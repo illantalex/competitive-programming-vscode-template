@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define ONLINE_JUDGE
+#define ONLINE_JUDGE
 
 #define FOR(i, start, end, growth) for (int i = start; i < end; i += growth)
 #define RFOR(i, start, end, growth) for (int i = start; i >= end; i -= growth)
@@ -40,32 +40,13 @@ typedef unordered_map<string, int> umap_si;
  * (10^10)
  */
 
-ll correct_mod(ll a, ll mod = MOD) {
-    return ((a % mod) + mod) % mod;
-}
-
-ll add_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) + correct_mod(b, mod), mod);
-}
-
-ll sub_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) - correct_mod(b, mod), mod);
-}
-
-ll mul_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) * correct_mod(b, mod), mod);
-}
-
-ll fastpow (ll a, ll n, ll mod = MOD) {
+ll fastpow (ll a, ll n, ll mod) {
     if (n == 0LL) return 1LL;
     if (n % 2 != 0) return (a * fastpow(a, n - 1, mod)) % mod;
     ll tmp = fastpow(a, n / 2, mod);
     return (tmp * tmp) % mod;
 }
 
-ll div_mod(ll a, ll b, ll mod = MOD) {
-    return mul_mod(a, fastpow(b, mod - 2, mod), mod);
-}
 
 int main() {
 #ifndef ONLINE_JUDGE
@@ -74,8 +55,8 @@ int main() {
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n;
-    cin >> n;
-    cout << n;
+    ll n, m;
+    cin >> n >> m;
+    cout << fastpow(n, n, m) << endl;
     return 0;
 }

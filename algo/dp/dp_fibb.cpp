@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define ONLINE_JUDGE
+#define ONLINE_JUDGE
 
 #define FOR(i, start, end, growth) for (int i = start; i < end; i += growth)
 #define RFOR(i, start, end, growth) for (int i = start; i >= end; i -= growth)
@@ -40,42 +40,44 @@ typedef unordered_map<string, int> umap_si;
  * (10^10)
  */
 
-ll correct_mod(ll a, ll mod = MOD) {
-    return ((a % mod) + mod) % mod;
-}
+// void solve(ll test_case)
+// {
+//     // Do your thing here :)
+//     cout << test_case << "\n";
+// }
 
-ll add_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) + correct_mod(b, mod), mod);
-}
+// ll f(int i) {
+//     if (i < 0) return 0;
+//     if (i == 0) return 1;
+//     if (dp[i] != -1) return dp[i];
+//     if (s[i - 1] != '0') {
+//         return 0;
+//     } else {
+//         dp[i] = (f(i - 1) + f(i - 2) + f(i - 3)) % MOD;
+//         return dp[i];
+//     }
+// }
 
-ll sub_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) - correct_mod(b, mod), mod);
-}
+// ll corr_mod(ll a) {
+//     return ((a % MOD) + MOD) % MOD;
+// }
 
-ll mul_mod(ll a, ll b, ll mod = MOD) {
-    return correct_mod(correct_mod(a, mod) * correct_mod(b, mod), mod);
-}
-
-ll fastpow (ll a, ll n, ll mod = MOD) {
-    if (n == 0LL) return 1LL;
-    if (n % 2 != 0) return (a * fastpow(a, n - 1, mod)) % mod;
-    ll tmp = fastpow(a, n / 2, mod);
-    return (tmp * tmp) % mod;
-}
-
-ll div_mod(ll a, ll b, ll mod = MOD) {
-    return mul_mod(a, fastpow(b, mod - 2, mod), mod);
-}
+ull dp[1000000];
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("/home/illantalex/projects/competitive-programming-vscode-template/input.txt", "r", stdin);
-    freopen("/home/illantalex/projects/competitive-programming-vscode-template/output.txt", "w", stdout);
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int n;
     cin >> n;
-    cout << n;
+    dp[0] = 1;
+    dp[1] = 1;
+    for (int i = 2; i <= n; ++i) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    cout << dp[2020] << " " << dp[2018] << endl;
     return 0;
 }

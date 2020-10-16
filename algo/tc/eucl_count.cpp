@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define ONLINE_JUDGE
+#define ONLINE_JUDGE
 
 #define FOR(i, start, end, growth) for (int i = start; i < end; i += growth)
 #define RFOR(i, start, end, growth) for (int i = start; i >= end; i -= growth)
@@ -40,44 +40,52 @@ typedef unordered_map<string, int> umap_si;
  * (10^10)
  */
 
-// void solve(ll test_case)
-// {
-//     // Do your thing here :)
-//     cout << test_case << "\n";
-// }
+ll correct_mod(ll a, ll mod) {
+    return ((a % mod) + mod) % mod;
+}
 
-// ll f(int i) {
-//     if (i < 0) return 0;
-//     if (i == 0) return 1;
-//     if (dp[i] != -1) return dp[i];
-//     if (s[i - 1] != '0') {
-//         return 0;
-//     } else {
-//         dp[i] = (f(i - 1) + f(i - 2) + f(i - 3)) % MOD;
-//         return dp[i];
-//     }
-// }
+ll add_mod(ll a, ll b, ll mod) {
+    return correct_mod(correct_mod(a, mod) + correct_mod(b, mod), mod);
+}
 
-// ll corr_mod(ll a) {
-//     return ((a % MOD) + MOD) % MOD;
-// }
+ll div_mod(ll a, ll b, ll mod) {
+    return correct_mod(correct_mod(a, mod) - correct_mod(b, mod), mod);
+}
 
-ll dp[100];
+ll mul_mod(ll a, ll b, ll mod) {
+    return correct_mod(correct_mod(a, mod) * correct_mod(b, mod), mod);
+}
+int counter = 0;
+ull gcd(ull a, ull b) {
+    if (a < b) return gcd(b, a);
+    if (b == 0) return a;
+    counter++;
+    return gcd(b, a % b);
+}
+
+// ll x1, y1, x2, y2;
+// ll extgcd(ll r1, ll r2, ll &x1, ll &y1, ll &x2, ll &y2, bool first = true) {
+//     if (r1 < r2) return extgcd(r2, r1, y1, x1, y2, x2, first);
+//     if (r2 == 0) return r1;
+//     ll x = x1 - (r1 / r2) * x2;
+//     ll y = y1 - (r1 / r2) * y2;
+//     x1 = x2;
+//     x2 = x;
+//     y1 = y2;
+//     y2 = y;
+//     return extgcd(r2, r1 % r2, x1, y1, x2, y2, false);
+// }
 
 int main() {
 #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("/home/illantalex/projects/competitive-programming-vscode-template/input.txt", "r", stdin);
+    freopen("/home/illantalex/projects/competitive-programming-vscode-template/output.txt", "w", stdout);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n;
-    cin >> n;
-    dp[0] = 1;
-    dp[1] = 2;
-    for (int i = 2; i <= n; ++i) {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    cout << dp[n] << endl;
+    ull a, b;
+    cin >> a >> b;
+    gcd(a, b);
+    cout << counter << endl;
     return 0;
 }

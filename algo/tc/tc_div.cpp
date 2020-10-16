@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// #define ONLINE_JUDGE
+#define ONLINE_JUDGE
 
 #define FOR(i, start, end, growth) for (int i = start; i < end; i += growth)
 #define RFOR(i, start, end, growth) for (int i = start; i >= end; i -= growth)
@@ -74,8 +74,8 @@ int main() {
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int n;
-    cin >> n;
-    cout << n;
+    ll a, b, c, d;
+    cin >> a >> b >> c >> d;
+    cout << div_mod(add_mod(mul_mod(a, d), mul_mod(b, c)), mul_mod(b, d));
     return 0;
 }
